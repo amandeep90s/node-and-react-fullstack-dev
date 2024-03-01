@@ -12,15 +12,24 @@ app.use(cors());
 passport.use(
   new GoogleStrategy(
     {
-      clientId: config.GOOGLE_CLIENT_ID,
+      clientID: config.GOOGLE_CLIENT_ID,
       clientSecret: config.GOOGLE_CLIENT_SECRET,
       callbackURL: '/auth/google/callback',
     },
-    (accessToken) => {
-      console.log(accessToken);
+    (accessToken, refreshToken, profile, done) => {
+      console.log(accessToken, refreshToken, profile, done);
     }
   )
 );
+
+app.get(
+  '/auth/google',
+  passport.authenticate('google', {
+    scope: ['profile', 'email'],
+  })
+);
+
+app.get('/auth/google/callback', passport.authenticate('google'));
 
 app.listen(config.SERVER_PORT, () => {
   console.log(`Server is running on http://localhost:${config.SERVER_PORT}`);
