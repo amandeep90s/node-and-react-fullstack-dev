@@ -1,36 +1,20 @@
 const express = require('express');
 const cors = require('cors');
-const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth20');
 const config = require('./utils/config');
+const authRoutes = require('./routes/authRoutes');
+require('./services/passport');
 
+// Configure Express Server
 const app = express();
-
+// Handle Request Body
 app.use(express.json());
+// Handle CORS
 app.use(cors());
 
-passport.use(
-  new GoogleStrategy(
-    {
-      clientID: config.GOOGLE_CLIENT_ID,
-      clientSecret: config.GOOGLE_CLIENT_SECRET,
-      callbackURL: '/auth/google/callback',
-    },
-    (accessToken, refreshToken, profile, done) => {
-      console.log(accessToken, refreshToken, profile, done);
-    }
-  )
-);
+// Handle Routes
+app.use('/auth/google', authRoutes);
 
-app.get(
-  '/auth/google',
-  passport.authenticate('google', {
-    scope: ['profile', 'email'],
-  })
-);
-
-app.get('/auth/google/callback', passport.authenticate('google'));
-
+// Start Server
 app.listen(config.SERVER_PORT, () => {
   console.log(`Server is running on http://localhost:${config.SERVER_PORT}`);
 });
