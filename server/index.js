@@ -42,9 +42,6 @@ app.use(passport.session());
 
 // Handle Routes
 app.use('/auth', authRoutes);
-app.get('/api/current/user', (request, response) => {
-  response.json(request.user);
-});
 
 // Start Server
 app.listen(config.SERVER_PORT, () => {
