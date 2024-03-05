@@ -6,6 +6,7 @@ const SERVER_PORT = process.env.SERVER_PORT;
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_OAUTH_CLIENT_ID;
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_OAUTH_CLIENT_SECRET;
 const COOKIE_SECRET = process.env.COOKIE_SECRET_KEY;
+const CLIENT_URL = process.env.CLIENT_URL;
 
 module.exports = {
   MONGO_URI,
@@ -14,4 +15,5 @@ module.exports = {
   GOOGLE_CLIENT_ID,
   GOOGLE_CLIENT_SECRET,
   COOKIE_SECRET,
+  CLIENT_URL,
 };

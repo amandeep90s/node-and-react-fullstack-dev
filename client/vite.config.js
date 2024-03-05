@@ -13,6 +13,10 @@ export default defineConfig({
         target: process.env.VITE_APP_SERVER_URL,
         changeOrigin: true,
       },
+      '/auth/google': {
+        target: process.env.VITE_APP_SERVER_URL,
+        changeOrigin: true,
+      },
     },
   },
 });
