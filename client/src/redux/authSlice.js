@@ -20,7 +20,19 @@ const authSlice = createSlice({
     loading: false,
     error: null,
   },
-  reducers: {},
+  reducers: {
+    signOutUserStart: (state) => {
+      state.loading = true;
+    },
+    signOutUserSuccess: (state) => {
+      state.loading = false;
+      state.user = null;
+    },
+    signOutUserFailure: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       // When the fetchUserData thunk is pending
@@ -40,5 +52,8 @@ const authSlice = createSlice({
       });
   },
 });
+
+export const { signOutUserStart, signOutUserFailure, signOutUserSuccess } =
+  authSlice.actions;
 
 export default authSlice.reducer;

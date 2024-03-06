@@ -1,8 +1,31 @@
-import { useSelector } from 'react-redux';
+import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import {
+  signOutUserFailure,
+  signOutUserStart,
+  signOutUserSuccess,
+} from '../redux/authSlice';
 
 const Header = () => {
+  const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
+
+  const handleSignOut = async (event) => {
+    event.preventDefault();
+    try {
+      dispatch(signOutUserStart());
+
+      const result = await axios.get('/auth/logout');
+      if (result.data.status === 'ok') {
+        dispatch(signOutUserSuccess());
+        return;
+      }
+      dispatch(signOutUserFailure('Something went wrong!'));
+    } catch (error) {
+      dispatch(signOutUserFailure(error.message));
+    }
+  };
 
   const navItems = () =>
     user ? (
@@ -14,7 +37,9 @@ const Header = () => {
           <Link to='/surveys/new'>Create Survey</Link>
         </li>
         <li>
-          <Link to='/auth/logout'>Logout</Link>
+          <a href='/' onClick={handleSignOut}>
+            Logout
+          </a>
         </li>
       </>
     ) : (

@@ -10,7 +10,7 @@ const authCallback = (request, response) => {
 
 const logout = (request, response) => {
   request.logout();
-  response.end();
+  response.json({ status: 'ok' });
 };
 
 const currentUser = (request, response) => {
