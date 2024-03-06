@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
+import authReducer from './authSlice';
+import surveyReducer from './surveySlice';
 
 export default configureStore({
   reducer: {
-    auth: {},
-    survey: {},
+    auth: authReducer,
+    survey: surveyReducer,
   },
 });

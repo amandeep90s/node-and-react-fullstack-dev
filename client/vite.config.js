@@ -1,6 +1,6 @@
-import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import dotenv from 'dotenv';
+import { defineConfig } from 'vite';
 
 dotenv.config(); // Load environment from .env file
 
@@ -13,7 +13,7 @@ export default defineConfig({
         target: process.env.VITE_APP_SERVER_URL,
         changeOrigin: true,
       },
-      '/auth/google': {
+      '/auth': {
         target: process.env.VITE_APP_SERVER_URL,
         changeOrigin: true,
       },

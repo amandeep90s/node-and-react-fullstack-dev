@@ -1,19 +1,27 @@
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
-  const navItems = () => (
-    <>
+  const { user } = useSelector((state) => state.auth);
+
+  const navItems = () =>
+    user ? (
+      <>
+        <li>
+          <Link to='/surveys'>Dashboard</Link>
+        </li>
+        <li>
+          <Link to='/surveys/new'>Create Survey</Link>
+        </li>
+        <li>
+          <Link to='/auth/logout'>Logout</Link>
+        </li>
+      </>
+    ) : (
       <li>
         <a href='/auth/google'>Login with Google</a>
       </li>
-      <li>
-        <Link to='/surveys'>Dashboard</Link>
-      </li>
-      <li>
-        <Link tof='/surveys/new'>Create Survey</Link>
-      </li>
-    </>
-  );
+    );
 
   return (
     <nav>
