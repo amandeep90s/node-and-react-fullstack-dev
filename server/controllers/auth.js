@@ -5,7 +5,7 @@ const signUp = passport.authenticate('google', {
 });
 
 const authCallback = (request, response) => {
-  response.json({ succcess: 'ok' });
+  response.redirect('/');
 };
 
 const logout = (request, response) => {

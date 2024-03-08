@@ -37,9 +37,9 @@ const Header = () => {
           <Link to='/surveys/new'>Create Survey</Link>
         </li>
         <li>
-          <a href='/' onClick={handleSignOut}>
+          <Link to='/' onClick={handleSignOut}>
             Logout
-          </a>
+          </Link>
         </li>
       </>
     ) : (
