@@ -54,7 +54,7 @@ const Header = () => {
         <div className='row'>
           <div className='col s12'>
             <div className='nav-wrapper'>
-              <Link to='/' className='brand-logo'>
+              <Link to={user ? '/surveys' : '/'} className='brand-logo'>
                 Emaily
               </Link>
               <a
